@@ -1,0 +1,88 @@
+<style>
+  body {
+      padding: 20px 50px;
+      background: rgb(15, 15, 15);
+      color: #fff;
+      font-family: "Arial", Times, serif;
+  }
+
+  a {
+      color: rgb(255, 69, 0);
+      text-decoration: none;
+  }
+  a:hover {
+      color: rgb(240, 111, 64);
+  }
+
+  .header h1 {
+      text-align: center;
+      color: rgb(255, 69, 0);
+  }
+
+  .header p {
+      text-align: center;
+      margin-bottom: 30px;
+  }
+
+  .endpoint {
+      margin-left: 5%;
+      padding: 1px 20px 10px;
+      margin-bottom: 50px;
+      border: 1px solid rgb(15, 15, 15);
+      border-left: 1px solid rgb(255, 69, 0);
+      font-family: Arial, Helvetica, sans-serif;
+      background: #1f1f1f;
+  }
+
+  .endpoint:hover {
+      -webkit-box-shadow: 5px 5px 5px 0px rgba(92, 92, 92, 0.25);
+      -moz-box-shadow: 5px 5px 5px 0px rgba(92, 92, 92, 0.25);
+      box-shadow: 5px 5px 5px 0px rgba(92, 92, 92, 0.25);
+  }
+
+  .category {
+      display: grid;
+      grid-column-gap: 50px;
+      grid-template-columns: 1fr 1fr;
+  }
+
+  .category h4 {
+      font-weight: normal;
+      letter-spacing: 1px;
+  }
+
+  .endpoint span {
+      display: inline-block;
+      min-width: 60px;
+      text-align: center;
+      background: rgb(255, 69, 0);
+      color: #ffffff;
+      border-radius: 5px;
+      padding: 5px 15px;
+      text-transform: uppercase;
+      font-weight: bolder;
+      margin-right: 10px;
+  }
+
+  hr {
+      width: 70vw;
+      border-color: rgba(255, 68, 0, 0.055);
+  }
+</style>
+
+<div class="header">
+  <h1>Cookiefolio Documentation</h1>
+  <hr />
+</div>
+<h2>Endpoints</h2>
+<div class="category">
+  <% endpoints.forEach(function(end) { %>
+  <div class="endpoint">
+      <h4>
+          <span class="rotate"><%= end.method %></span>
+          <a href="<%= ip %>/<%= end.endpoint %>">/<%= end.endpoint %></a>
+      </h4>
+      <p><%= end.desc %></p>
+  </div>
+  <% }); %>
+</div>
