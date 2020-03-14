@@ -8,7 +8,7 @@ route.post('/', async (req, res) => {
   const delivery = await DeliveryService.orderDelivered(req.body.deliveryPersonId);
   // console.log(order)
   const order = await OrderService.updateOrder(delivery.assignedOrderId, deliveryStatusType.DELIVERED);
-  // console.log(order);
+  console.log(order);
   res.json({order});
 });
 
