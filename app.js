@@ -10,11 +10,13 @@ const port = 8006;
 
 const indexRoute = require('./web/routes/index.route');
 const orderRoute = require('./web/routes/order.route');
+const deliveryRoute = require('./web/routes/delivery.route');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/web/views'));
 
@@ -23,6 +25,7 @@ app.use(cors());
 // routes
 app.use('/', indexRoute);
 app.use('/order', orderRoute);
+app.use('/delivery', deliveryRoute);
 
 // connect to db
 db.connect()

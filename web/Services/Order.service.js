@@ -1,5 +1,5 @@
-const Order = require('../db/Models/Order.model');
 const ObjectId = require('mongoose').Types.ObjectId;
+const Order = require('../db/Models/Order.model');
 
 class OrderService {
     async newOrder(order) {
@@ -13,6 +13,7 @@ class OrderService {
       }
     }
 
+    // returns PENDING orders
     async getOrders() {
       try {
         // find and sort orders in ascending order(oldest to newest)
@@ -23,12 +24,15 @@ class OrderService {
       }
     }
 
-    async updateOrder(orderId) {
+    async updateOrder(orderId, status) {
       try {
         const updatedOrder = await Order.findOneAndUpdate(
           {_id: ObjectId(orderId)},
-          {deliveryStatus: 'PENDING'}
+          {deliveryStatus: status},
+          {new: true}
         ).exec();
+        console.log(updatedOrder)
+        return updatedOrder;
       } catch(error) {
         console.error(error);
       }

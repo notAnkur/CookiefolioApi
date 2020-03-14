@@ -1,6 +1,7 @@
 const route = require('express').Router();
 const OrderService = require('../Services/Order.service');
 const DeliveryService = require('../Services/Delivery.service');
+const deliveryStatusType = require('../utils/type');
 
 route.get('/', async (req, res) => {
   const orders = await OrderService.getOrders();
@@ -8,28 +9,29 @@ route.get('/', async (req, res) => {
 });
 
 route.post('/', async (req, res) => {
-  console.log('order POST');
+
   const deliveryPeople = await DeliveryService.getDeliveryPeople();
-  console.log(deliveryPeople);
+
   let newOrderObj = {
     username: req.body.username,
     address: req.body.address,
     cookieQuantity: req.body.cookieQuantity,
-    deliveryStatus: null,
-    assignedTo: null
+    deliveryStatus: deliveryPeople.length==0 ? deliveryStatusType.PENDING : deliveryStatusType.ASSIGNED,
+    assignedTo: deliveryPeople.length==0 ? null : deliveryPeople[0]._id
   };
 
-  if(deliveryPeople.length == 0) {
-    newOrderObj.deliveryStatus = 'PENDING';
-  } else if(deliveryPeople.length > 0) {
-    newOrderObj.deliveryStatus = 'ASSIGNED';
-    newOrderObj.assignedTo = deliveryPeople[0]._id;
-    // change delivery person's availability
-    DeliveryService.assignDelivery(deliveryPeople[0]._id);
+  const order = await OrderService.newOrder({...newOrderObj});
+
+  if(deliveryPeople.length > 0) {
+    // delivery person is available, change their availability status
+    DeliveryService.assignDelivery(deliveryPeople[0]._id, order._id);
   }
 
-  const order = await OrderService.newOrder({...newOrderObj});
   res.json({order});
-})
+});
+
+route.post('/:id', async (req, res) => {
+  
+});
 
 module.exports = route;
