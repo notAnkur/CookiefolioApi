@@ -7,7 +7,7 @@
   }
 
   a {
-      color: rgb(255, 69, 0);
+      color: rgb(55, 112, 255);
       text-decoration: none;
   }
   a:hover {
@@ -16,7 +16,7 @@
 
   .header h1 {
       text-align: center;
-      color: rgb(255, 69, 0);
+      color: rgb(55, 112, 255);
   }
 
   .header p {
@@ -29,7 +29,7 @@
       padding: 1px 20px 10px;
       margin-bottom: 50px;
       border: 1px solid rgb(15, 15, 15);
-      border-left: 1px solid rgb(255, 69, 0);
+      border-left: 1px solid rgb(55, 112, 255);
       font-family: Arial, Helvetica, sans-serif;
       background: #1f1f1f;
   }
@@ -43,7 +43,7 @@
   .category {
       display: grid;
       grid-column-gap: 50px;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
   }
 
   .category h4 {
@@ -55,7 +55,7 @@
       display: inline-block;
       min-width: 60px;
       text-align: center;
-      background: rgb(255, 69, 0);
+      background: rgb(55, 112, 255);
       color: #ffffff;
       border-radius: 5px;
       padding: 5px 15px;
@@ -66,7 +66,7 @@
 
   hr {
       width: 70vw;
-      border-color: rgba(255, 68, 0, 0.055);
+      border-color: rgb(55, 112, 255, 0.1);
   }
 </style>
 
@@ -80,9 +80,11 @@
   <div class="endpoint">
       <h4>
           <span class="rotate"><%= end.method %></span>
-          <a href="<%= ip %>/<%= end.endpoint %>">/<%= end.endpoint %></a>
+          <a href="<%= ip %>/<%= end.endpoint %>"><b>/<%= end.endpoint %></b></a>
       </h4>
-      <p><%= end.desc %></p>
+      <p><b>Desc.:</b> <%= end.desc %></p>
+      <p><b>ReqBody:</b> <%= end.reqBody %></p>
+      <p><b>Response:</b> <%= end.response %></p>
   </div>
   <% }); %>
 </div>
