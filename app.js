@@ -6,7 +6,7 @@ const db = require('./web/db/index.js');
 
 const app = express();
 
-const port = 8006;
+const port = process.env.PORT || 8006;
 
 const indexRoute = require('./web/routes/index.route');
 const orderRoute = require('./web/routes/order.route');
