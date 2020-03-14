@@ -5,7 +5,7 @@ const OrderSchema = new Schema({
   username: String,
   address: String,
   cookieQuantity: Number,
-  deliveryStatus: {type: String, default: 'PENDING'},
+  deliveryStatus: String,
   assignedTo: String,
   placedOn: {type: Date, default: Date.now}
 });

@@ -5,6 +5,13 @@ route.get('/', (req, res) => {
       ip: `http://localhost:8006`,
       endpoints: [
           {
+              method: 'GET',
+              endpoint: 'order',
+              desc: 'Endpoint to fetch pending orders',
+              reqBody: 'None',
+              response: 'Array of pending orders in ascending order.'
+          },
+          {
               method: 'POST',
               endpoint: 'order',
               desc: 'Endpoint to place new order',

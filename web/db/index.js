@@ -6,7 +6,7 @@ const connect = () => {
       { useNewUrlParser: true, 
         useCreateIndex: true, 
         useUnifiedTopology: true,
-      useFindAndModify: true })
+        useFindAndModify: false })
       .then((res, err) => {
         if(err) return reject(err);
         resolve();
