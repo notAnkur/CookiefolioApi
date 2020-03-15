@@ -6,7 +6,6 @@ class OrderService {
       try {
         const newOrder = new Order({ ...order });
         newOrder.save();
-        console.log(newOrder);
         return newOrder;
       } catch(error) {
         console.error(error);

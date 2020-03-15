@@ -20,13 +20,6 @@ route.get('/', (req, res) => {
           },
           {
               method: 'POST',
-              endpoint: 'order/:id',
-              desc: 'Endpoint to update order status',
-              reqBody: 'order id(mongo document id) as request param',
-              response: ''
-          },
-          {
-              method: 'POST',
               endpoint: 'delivery',
               desc: 'Order finished endpoint',
               reqBody: 'deliveryPersonId',

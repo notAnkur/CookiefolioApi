@@ -5,7 +5,8 @@ const deliveryStatusType = require('../utils/type');
 
 route.get('/', async (req, res) => {
   const orders = await OrderService.getOrders();
-  console.log(orders);
+  // console.log(orders);
+  res.json({orders});
 });
 
 route.post('/', async (req, res) => {
@@ -28,10 +29,6 @@ route.post('/', async (req, res) => {
   }
 
   res.json({order});
-});
-
-route.post('/:id', async (req, res) => {
-  
 });
 
 module.exports = route;

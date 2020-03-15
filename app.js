@@ -31,6 +31,8 @@ app.use('/delivery', deliveryRoute);
 db.connect()
   .then(() => console.log('Connected to db'));
 
-app.listen(port, () => {
+let server = app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
+
+module.exports = server;
