@@ -16,7 +16,7 @@ route.post('/', async (req, res) => {
     DeliveryService.assignDelivery(req.body.deliveryPersonId, pendingOrders[0]._id);
   }
 
-  res.json({order});
+  res.send(delivery);
 });
 
 module.exports = route;

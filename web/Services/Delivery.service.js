@@ -28,7 +28,8 @@ class DeliveryService {
     try {
       const delivery = await Delivery.findOneAndUpdate(
         {_id: ObjectId(deliveryPersonId)},
-        {isAvailable: true, assignedOrderId: null}
+        {isAvailable: true, assignedOrderId: null},
+        {new: true}
       ).exec();
       return delivery;
     } catch(error) {

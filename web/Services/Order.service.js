@@ -30,7 +30,6 @@ class OrderService {
           {deliveryStatus: status},
           {new: true}
         ).exec();
-        console.log(updatedOrder)
         return updatedOrder;
       } catch(error) {
         console.error(error);

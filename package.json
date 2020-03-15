@@ -6,7 +6,7 @@
   "scripts": {
     "start": "dotenv -e envs/.env node app.js",
     "dev": "dotenv -e envs/.env nodemon app.js",
-    "test": "dotenv -e envs/.env mocha 'test/**/**/*.js' --recursive --exit"
+    "test": "dotenv -e envs/.test.env mocha 'test/**/*.js' --recursive --exit"
   },
   "repository": {
     "type": "git",

@@ -23,7 +23,7 @@ route.get('/', (req, res) => {
               endpoint: 'delivery',
               desc: 'Order finished endpoint',
               reqBody: 'deliveryPersonId',
-              response: '\"order\": {string _id, string username, string address, int cookieQuantity, string deliveryStatus, string assignedTo, string placedOn}'
+              response: 'bool isDelivered'
 
           }
       ]

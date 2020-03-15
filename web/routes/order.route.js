@@ -6,7 +6,7 @@ const deliveryStatusType = require('../utils/type');
 route.get('/', async (req, res) => {
   const orders = await OrderService.getOrders();
   // console.log(orders);
-  res.json({orders});
+  res.send(orders);
 });
 
 route.post('/', async (req, res) => {
