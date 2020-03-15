@@ -2,7 +2,7 @@ const route = require('express').Router();
 
 route.get('/', (req, res) => {
   res.render('index.ejs', {
-      ip: `http://localhost:8006`,
+      ip: `https://api.cookiefolio.ankuranant.dev`,
       endpoints: [
           {
               method: 'GET',

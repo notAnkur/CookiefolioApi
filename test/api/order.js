@@ -25,13 +25,13 @@ describe('POST /order', function() {
       .send({"username": "Ankur", "address": "test", "cookieQuantity": 4})
       .then((res) => {
         const body = res.body;
-        expect(body.order).to.contain.property('_id');
-        expect(body.order).to.contain.property('username');
-        expect(body.order).to.contain.property('address');
-        expect(body.order).to.contain.property('cookieQuantity');
-        expect(body.order).to.contain.property('deliveryStatus');
-        expect(body.order).to.contain.property('assignedTo');
-        expect(body.order).to.contain.property('placedOn');
+        expect(body).to.contain.property('_id');
+        expect(body).to.contain.property('username');
+        expect(body).to.contain.property('address');
+        expect(body).to.contain.property('cookieQuantity');
+        expect(body).to.contain.property('deliveryStatus');
+        expect(body).to.contain.property('assignedTo');
+        expect(body).to.contain.property('placedOn');
         done();
       })
         .catch((err) => done(err));
