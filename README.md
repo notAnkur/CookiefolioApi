@@ -1,9 +1,8 @@
 # Cookiefolio
 
-These instructions will get you a copy of the project up and running on your local machine.
+Project setup.
 
-- Clone the repository
-- Install the packages
+- Install the packages.
 ```
 npm install
 ```
@@ -14,4 +13,4 @@ npm install
 npm start
 ```
 
-Now simply visit `localhost:<PORT defined in .env or 8006>` on your browser.
+The documentation will be available at `localhost:<PORT defined in .env or 8006>`.
