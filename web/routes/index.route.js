@@ -16,14 +16,14 @@ route.get('/', (req, res) => {
               endpoint: 'order',
               desc: 'Endpoint to place new order',
               reqBody: 'username, address, cookieQuantity',
-              response: '\"newOrder\": {string deliveryStatus, string _id, string username, string address, int cookieQuantity, dateString placedOn}'
+              response: 'string deliveryStatus, string _id, string username, string address, int cookieQuantity, dateString placedOn, string assignedTo'
           },
           {
               method: 'POST',
               endpoint: 'delivery',
               desc: 'Order finished endpoint',
               reqBody: 'deliveryPersonId',
-              response: 'bool isDelivered'
+              response: 'string assignedOrderId, string _id, string username, bool isAvailabe'
 
           }
       ]
