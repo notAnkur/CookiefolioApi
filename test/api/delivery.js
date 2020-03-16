@@ -33,3 +33,28 @@ describe('POST /delivery', function() {
         .catch((err) => done(err));
   })
 });
+
+describe('GET /delivery', function() {
+  this.timeout(10000);
+  before((done) => {
+    conn.connect()
+      .then(() => done())
+      .catch((err) => done(err));
+  });
+
+  after((done) => {
+    conn.close()
+      .then(() => done())
+      .catch((err) => done(err));
+  });
+
+  it('OK, getting delivery drivers', (done) => {
+    request(app).get('/delivery')
+      .then((res) => {
+        const body = res.body;
+        expect(body.length).to.be.at.least(0);
+        done();
+      })
+        .catch((err) => done(err));
+  })
+});

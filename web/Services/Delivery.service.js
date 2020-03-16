@@ -2,7 +2,18 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const Delivery = require('../db/Models/Delivery.model');
 
 class DeliveryService {
+
   async getDeliveryPeople() {
+    try {
+      const deliveryPeople = await Delivery.find({}).exec();
+      return deliveryPeople;
+    } catch(error) {
+      console.error(error);
+    }
+  }
+
+  // returns available delivery people
+  async getAvailableDeliveryPeople() {
     try {
       const deliveryPeople = await Delivery.find({isAvailable: true}).exec();
       return deliveryPeople;
@@ -28,8 +39,7 @@ class DeliveryService {
     try {
       const delivery = await Delivery.findOneAndUpdate(
         {_id: ObjectId(deliveryPersonId)},
-        {isAvailable: true, assignedOrderId: null},
-        {new: true}
+        {isAvailable: true, assignedOrderId: null}
       ).exec();
       return delivery;
     } catch(error) {

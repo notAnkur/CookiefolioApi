@@ -52,11 +52,11 @@ describe('GET /order', function() {
       .catch((err) => done(err));
   });
 
-  it('OK, fetching empty pending orders array', (done) => {
+  it('OK, getting pending orders array', (done) => {
     request(app).get('/order')
       .then((res) => {
         const body = res.body;
-        expect(body.length)
+        expect(body.length).to.be.at.least(0);
         done();
       })
         .catch((err) => done(err));

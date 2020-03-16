@@ -11,7 +11,7 @@ route.get('/', async (req, res) => {
 
 route.post('/', async (req, res) => {
 
-  const deliveryPeople = await DeliveryService.getDeliveryPeople();
+  const deliveryPeople = await DeliveryService.getAvailableDeliveryPeople();
 
   let newOrderObj = {
     username: req.body.username,
