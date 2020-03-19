@@ -10,7 +10,7 @@ route.post('/signup', (req, res) => {
     bcrypt.hash(req.body.password, salt, async (err, hash) =>{
       if(err) console.error(err);
       const userData = {
-        username: req.body.username.toLowerCase(),
+        username: req.body.username,
         passwordHash: hash,
         address: req.body.address,
         accessLevel: 0
@@ -28,7 +28,7 @@ route.post('/signup', (req, res) => {
 });
 
 route.post('/login', async (req, res) => {
-  const user = await UserService.findUser(req.body.username.toLowerCase());
+  const user = await UserService.findUser(req.body.username);
   if(user) {
     bcrypt.compare(req.body.password, user.passwordHash, (err, result) => {
       if(err) console.error(err);

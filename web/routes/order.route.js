@@ -6,7 +6,6 @@ const deliveryStatusType = require('../utils/type');
 const { verifyToken } = require('../utils/verifyToken');
 
 route.get('/', verifyToken, (req, res) => {
-  console.log('yolo')
   jwt.verify(req.token, process.env.JWT_SECRET, async (err, result) => {
     if(err) console.error(err);
     if(result && result.accessLevel>=3) {
@@ -23,7 +22,21 @@ route.get('/pending', verifyToken, (req, res) => {
     if(err) console.error(err);
     if(result && result.accessLevel>=2) {
       const orders = await OrderService.getPendingOrders();
-      res.send(orders);
+      res.status(200).json({orders, isOpSuccess: true, message: "Fetched orders successfully"});
+    } else {
+      res.status(401).json({orders: null, isOpSuccess: false, message: "Invalid token"});
+    }
+  });
+});
+
+route.get('/me', verifyToken, (req, res) => {
+  jwt.verify(req.token, process.env.JWT_SECRET, async (err, result) => {
+    if(err) console.error(err);
+    if(result && result.accessLevel>=1) {
+      const orders = await OrderService.getMyPendingOrder(result.username);
+      res.status(200).json({orders, isOpSuccess: true, message: "Fetched user\'s orders successfully"});
+    } else {
+      res.status(401).json({orders: null, isOpSuccess: false, message: "Invalid token"});
     }
   });
 });

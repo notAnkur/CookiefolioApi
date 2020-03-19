@@ -3,7 +3,7 @@ const Account = require('../db/Models/Account.model');
 class UserService {
     async newUser(userData) {
       try {
-        const user = await Account.findOne({username: userData.username}).exec();
+        const user = await Account.findOne({username: new RegExp(`^${userData.username}$`, 'i')}).exec();
         console.log(user)
         if(user===null) {
           const newUser = new Account({ ...userData });
@@ -19,7 +19,7 @@ class UserService {
 
     async findUser(username) {
       try {
-        const user = await Account.findOne({username: username}).exec();
+        const user = await Account.findOne({username: new RegExp(`^${username}$`, 'i')}).exec();
         return user;
       } catch(error) {
         console.error(error)

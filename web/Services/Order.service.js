@@ -1,5 +1,6 @@
 const ObjectId = require('mongoose').Types.ObjectId;
 const Order = require('../db/Models/Order.model');
+const deliveryType = require('../utils/type');
 
 class OrderService {
     async newOrder(order) {
@@ -41,6 +42,31 @@ class OrderService {
           {new: true}
         ).exec();
         return updatedOrder;
+      } catch(error) {
+        console.error(error);
+      }
+    }
+
+    // returns user's unfinished orders
+    async getMyPendingOrder(username) {
+      try {
+        console.log(username)
+        const orders = await Order.find({username: new RegExp(`^${username}$`, 'i'), $or: [
+          {deliveryStatus: deliveryType.ASSIGNED},
+          {deliveryStatus: deliveryType.PENDING}
+        ]}).exec();
+        console.log(orders)
+        return orders;
+      } catch(error) {
+        console.error(error);
+      }
+    }
+
+    // return user's orders
+    async getMyOrders(username) {
+      try {
+        const orders = await Order.find({username: new RegExp(`^${username}$`, 'i')}).exec();
+        return orders;
       } catch(error) {
         console.error(error);
       }
