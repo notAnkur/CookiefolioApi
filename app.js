@@ -9,6 +9,7 @@ const app = express();
 const port = process.env.PORT || 8006;
 
 const indexRoute = require('./web/routes/index.route');
+const authRoute = require('./web/routes/auth.route');
 const orderRoute = require('./web/routes/order.route');
 const deliveryRoute = require('./web/routes/delivery.route');
 
@@ -24,6 +25,7 @@ app.use(cors());
 
 // routes
 app.use('/', indexRoute);
+app.use('/auth', authRoute);
 app.use('/order', orderRoute);
 app.use('/delivery', deliveryRoute);
 
