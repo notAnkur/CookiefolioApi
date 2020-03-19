@@ -12,8 +12,18 @@ class OrderService {
       }
     }
 
-    // returns PENDING orders
+    // returns all orders
     async getOrders() {
+      try {
+        const orders = await Order.find({}).exec();
+        return orders;
+      } catch(error) {
+        console.error(error);
+      }
+    }
+
+    // returns PENDING orders
+    async getPendingOrders() {
       try {
         // find and sort orders in ascending order(oldest to newest)
         const orders = await Order.find({deliveryStatus: 'PENDING'}).sort({placedOn: 1}).exec();

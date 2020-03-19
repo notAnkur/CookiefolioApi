@@ -37,7 +37,7 @@ route.post('/login', async (req, res) => {
           username: user.username,
           address: user.address
         }
-        jwt.sign({username: user.username}, process.env.JWT_SECRET, {expiresIn: '2d'}, (err, token) => {
+        jwt.sign({username: user.username, accessLevel: user.accessLevel}, process.env.JWT_SECRET, {expiresIn: '2d'}, (err, token) => {
           if(err) console.error(err);
           res.status(200).json({token, userProfile, isOpSuccess: true, message: "Successful login"});
         });
