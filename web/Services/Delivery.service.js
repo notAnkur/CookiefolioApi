@@ -39,7 +39,8 @@ class DeliveryService {
     try {
       const delivery = await Delivery.findOneAndUpdate(
         {_id: ObjectId(deliveryPersonId)},
-        {isAvailable: true, $pull: { assignedOrderId: orderId }}
+        {$pull: { assignedOrderId: ObjectId(orderId) }},
+        {new: true}
       ).exec();
       return delivery;
     } catch(error) {
