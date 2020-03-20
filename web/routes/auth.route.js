@@ -13,7 +13,7 @@ route.post('/signup', (req, res) => {
         username: req.body.username,
         passwordHash: hash,
         address: req.body.address,
-        accessLevel: 0
+        accessLevel: 1
       }
       //save
       const user = await UserService.newUser(userData);
