@@ -42,7 +42,7 @@ route.get("/", (req, res) => {
         isRouteProtected: true,
         desc: "Endpoint to place new order",
         reqBody: "username, address, cookieQuantity",
-        response: "bool isOpSuccess, string message, object order: {string deliveryStatus, string _id, string username, string address, int cookieQuantity, dateString placedOn, string assignedTo}"
+        response: "bool isOpSuccess, string message, object order: {string deliveryStatus, string _id, string username, string address, Number cookieQuantity, dateString placedOn, string assignedTo}"
       },
       {
         method: "GET",
@@ -50,7 +50,7 @@ route.get("/", (req, res) => {
         isRouteProtected: true,
         desc: "Endpoint to fetch user\'s unfinished orders",
         reqBody: "None",
-        response: "bool isOpSuccess, string message, array order: [string deliveryStatus, string _id, string username, string address, int cookieQuantity, dateString placedOn, string assignedTo]"
+        response: "bool isOpSuccess, string message, array orders: [string deliveryStatus, string _id, string username, string address, int cookieQuantity, dateString placedOn, string assignedTo]"
       },
       {
         method: "GET",
@@ -58,7 +58,7 @@ route.get("/", (req, res) => {
         isRouteProtected: true,
         desc: "Endpoint to fetch all of user\'s orders",
         reqBody: "None",
-        response: "bool isOpSuccess, string message, array order: {string deliveryStatus, string _id, string username, string address, int cookieQuantity, dateString placedOn, string assignedTo}"
+        response: "bool isOpSuccess, string message, array orders: {string deliveryStatus, string _id, string username, string address, int cookieQuantity, dateString placedOn, string assignedTo}"
       },
       {
         method: "GET",
