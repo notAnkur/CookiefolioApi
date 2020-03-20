@@ -5,20 +5,20 @@ route.get("/", (req, res) => {
     ip: `https://api.cookiefolio.ankuranant.dev`,
     endpoints: [
       {
-        method: 'POST',
-        endpoint: 'auth/signup',
+        method: "POST",
+        endpoint: "auth/signup",
         isRouteProtected: false,
-        desc: 'Endpoint for user signup',
-        reqBody: 'string username, string password, string address',
-        response: 'bool isOpSuccess, string username, string message'
+        desc: "Endpoint for user signup",
+        reqBody: "string username, string password, string address",
+        response: "bool isOpSuccess, string username, string message"
       },
       {
-        method: 'POST',
-        endpoint: 'auth/login',
+        method: "POST",
+        endpoint: "auth/login",
         isRouteProtected: false,
-        desc: 'Endpoint for login',
-        reqBody: 'string username, string password',
-        response: 'jwt_token_string token, object userProfile: {string username, string address}, bool isOpSuccess, string message'
+        desc: "Endpoint for login",
+        reqBody: "string username, string password",
+        response: "jwt_token_string token, object userProfile: {string username, string address}, bool isOpSuccess, string message"
       },
       {
         method: "GET",
@@ -73,8 +73,8 @@ route.get("/", (req, res) => {
         endpoint: "delivery",
         isRouteProtected: true,
         desc: "Order finished endpoint",
-        reqBody: "string deliveryPersonId",
-        response: "bool isOpSuccess, string message, object delivery: {array assignedOrderId, string _id, string username, bool isAvailable}"
+        reqBody: "string deliveryPersonId, string orderId",
+        response: "bool isOpSuccess, string message, object delivery: {array assignedOrderId: [string elements], string _id, string username, bool isAvailable}"
       }
     ]
   });
