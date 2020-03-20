@@ -12,7 +12,7 @@ class DeliveryService {
     }
   }
 
-  // returns available delivery people
+  // returns available delivery people or people going in same route
   async getAvailableDeliveryPeople() {
     try {
       const deliveryPeople = await Delivery.find({isAvailable: true}).exec();
@@ -26,7 +26,7 @@ class DeliveryService {
     try {
       const delivery = await Delivery.findOneAndUpdate(
         {_id: ObjectId(deliveryPersonId)},
-        {isAvailable: false, assignedOrderId: orderId},
+        {isAvailable: false, $push: { assignedOrderId: orderId }},
         {new: true}
       ).exec();
       return delivery;
@@ -35,11 +35,11 @@ class DeliveryService {
     }
   }
 
-  async orderDelivered(deliveryPersonId) {
+  async orderDelivered(deliveryPersonId, orderId) {
     try {
       const delivery = await Delivery.findOneAndUpdate(
         {_id: ObjectId(deliveryPersonId)},
-        {isAvailable: true, assignedOrderId: null}
+        {isAvailable: true, $pull: { assignedOrderId: orderId }}
       ).exec();
       return delivery;
     } catch(error) {

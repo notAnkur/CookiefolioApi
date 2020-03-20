@@ -1,6 +1,8 @@
 const ObjectId = require('mongoose').Types.ObjectId;
 const Order = require('../db/Models/Order.model');
+const Delivery = require('../db/Models/Delivery.model');
 const deliveryType = require('../utils/type');
+const {fakeMap} = require('../utils/fakeMap');
 
 class OrderService {
     async newOrder(order) {
@@ -8,6 +10,21 @@ class OrderService {
         const newOrder = new Order({ ...order });
         newOrder.save();
         return newOrder;
+      } catch(error) {
+        console.error(error);
+      }
+    }
+
+    // returns driver's ID going in the same direction
+    async locationCheck(orderAddress) {
+      try {
+        const deliveryGuys = await Delivery.find({}).exec();
+        if(fakeMap()) {
+          const randomIndex = Math.floor(Math.random() * (deliveryGuys.length - 0 + 1) + 0);
+          return deliveryGuys[randomIndex]===undefined ? null : deliveryGuys[randomIndex]._id;
+        } else {
+          return null;
+        }
       } catch(error) {
         console.error(error);
       }

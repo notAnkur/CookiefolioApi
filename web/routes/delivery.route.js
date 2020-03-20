@@ -25,7 +25,7 @@ route.post('/', verifyToken, (req, res) => {
     if(err) console.error(err);
     if(result && result.accessLevel>=2) {
       // change delivery person's availability
-      let delivery = await DeliveryService.orderDelivered(req.body.deliveryPersonId);
+      let delivery = await DeliveryService.orderDelivered(req.body.deliveryPersonId, req.body.orderId);
       // change order status
       const order = await OrderService.updateOrder(delivery.assignedOrderId, deliveryStatusType.DELIVERED);
       //assign delivery person to open orders(if any)
