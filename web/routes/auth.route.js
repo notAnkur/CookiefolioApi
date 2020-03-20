@@ -20,7 +20,7 @@ route.post('/signup', (req, res) => {
       if(user) {
         res.status(200).json({isOpSuccess: true, username: user.username, message: 'Signup successful'});
       } else {
-        res.status(400).json({isOpSuccess: false, username: user.username, message: 'User already exist'});
+        res.status(400).json({isOpSuccess: false, message: 'User already exist'});
       }
     });
   });
