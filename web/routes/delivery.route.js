@@ -26,12 +26,11 @@ route.post('/', verifyToken, (req, res) => {
     if(result && result.accessLevel>=2) {
       // change delivery person's availability
       let delivery = await DeliveryService.orderDelivered(req.body.deliveryPersonId, req.body.orderId);
-      console.log('hell', delivery)
       // change order status
       await OrderService.updateOrder(req.body.orderId, deliveryStatusType.DELIVERED);
       //assign delivery person to open orders(if any)
       const pendingOrders = await OrderService.getPendingOrders();
-      if(pendingOrders.length > 0) {
+      if(delivery.assignedOrderId.length===0 && pendingOrders.length > 0) {
         await OrderService.updateOrder(pendingOrders[0]._id, deliveryStatusType.ASSIGNED);
         delivery = await DeliveryService.assignDelivery(req.body.deliveryPersonId, pendingOrders[0]._id);
       }
