@@ -20,7 +20,7 @@ route.get('/', verifyToken, (req, res) => {
 route.post('/', verifyToken, (req, res) => {
   jwt.verify(req.token, process.env.JWT_SECRET, async (err, result) => {
     if(err) console.error(err);
-    if(result && result.accessLevel>=2) {
+    if(result && result.accessLevel>=1) {
       const deliveryPeople = await DeliveryService.getAvailableDeliveryPeople();
 
       const driverId = await OrderService.locationCheck(req.body.address);
